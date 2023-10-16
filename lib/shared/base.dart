@@ -1,11 +1,10 @@
 import 'package:chuva_dart/shared/label.dart';
-import 'package:flutter/cupertino.dart';
 
-class Base<T>{
+class Base{
+
+
   int? _id;
   Label? _label;
-  Map<String,String>? campo1;
-  Map<String,T>? campo2;
 
 
   int? get id => _id;
@@ -19,4 +18,6 @@ class Base<T>{
   set label(Label? value) {
     _label = value;
   }
+
+  Base(this._id, this._label);
 }

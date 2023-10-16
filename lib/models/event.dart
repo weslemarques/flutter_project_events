@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
-import 'package:chuva_dart/shared/base.dart';
+import 'package:chuva_dart/models/category.dart';
+import 'package:chuva_dart/models/location.dart';
 import 'package:chuva_dart/shared/label.dart';
 
 class Event{
@@ -10,6 +11,6 @@ class Event{
   DateTime? end;  //": "2023-11-26T08:00:00-03:00",
   Label? title;
   Label? description;
-  Base<String>? category;
-  Base<Int>? locations;
+  Category? category;
+  Location? locations;
 }
