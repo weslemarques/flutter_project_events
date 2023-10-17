@@ -1,23 +1,21 @@
 import 'package:chuva_dart/shared/label.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+@JsonSerializable()
 class Base{
 
+  int? id;
+  @JsonKey()
+  Label? title;
 
-  int? _id;
-  Label? _label;
+  Base({this.id, this.title});
 
-
-  int? get id => _id;
-
-  set id(int? value) {
-    _id = value;
+  factory Base.fromJson(Map json){
+    return Base(
+      id: json['id'],
+      title: json['title'],
+    );
   }
 
-  Label? get label => _label;
 
-  set label(Label? value) {
-    _label = value;
-  }
-
-  Base(this._id, this._label);
 }
