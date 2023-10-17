@@ -1,4 +1,3 @@
-import 'package:chuva_dart/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,6 +6,7 @@ void main() {
 
 class ChuvaDart extends StatelessWidget {
   const ChuvaDart({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,6 @@ class _CalendarState extends State<Calendar> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CardWidget(),
             const Text(
               'Programação',
             ),
