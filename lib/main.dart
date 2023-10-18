@@ -1,15 +1,24 @@
+
+import 'package:chuva_dart/models/event.dart';
+import 'package:chuva_dart/repositories/event_repository.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const ChuvaDart());
+  runApp( ChuvaDart());
 }
 
 class ChuvaDart extends StatelessWidget {
-  const ChuvaDart({super.key});
+   ChuvaDart({super.key});
 
+  EventRepository repository = EventRepository();
+  List<Event> listEvent = [];
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    Future<List<Event>> future = repository.getAll();
+    future.then((value) => listEvent = value);
+    print(listEvent[0]);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

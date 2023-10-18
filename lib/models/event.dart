@@ -47,23 +47,20 @@ class Event {
       id: json['id'],
       end: DateTime.tryParse(json['end']) ,
       title: json['title'] != null ? Label.fromJson(json['title']) : null,
-      description: json['description'] != null ? Label.fromJson(
-          json['description']) : null,
-      category: json['category'] != null
-          ? Category.fromJson(json['category'])
-          : null,
+      description: json['description'] != null ? Label.fromJson(json['description']) : null,
+      category: json['category'] != null ? Category.fromJson(json['category']): null,
       status: json['status'],
       weight: json['weight'],
       addons: json['addons'],
       parent: json['parent'],
       event: json['event'],
-      locations: json['locations'] != null ? Location.listOfLocation(json['locations']): [],
-      people: json['people'] != null ? People.listOfPeoples(json['people']):[],
+      locations: (json['locations'] as List<dynamic>).map((e) => Location.fromJson(e)).toList(),
+      people: (json['people'] as List<dynamic>).map((e) => People.fromJson(e)).toList(),
     );
   }
 
   @override
   String toString() {
-    return 'Event{id: $id, changed: $changed, start: $start, end: $end, title: $title, description: $description, category: $category, locations: $locations, status: $status, weight: $weight, addons: $addons, parent: $parent, event: $event}';
+    return 'Event{id: $id, changed: $changed, start: $start, end: $end, title: $title, description: $description, category: $category, people: $people, locations: $locations, status: $status, weight: $weight, addons: $addons, parent: $parent, event: $event}';
   }
 }
