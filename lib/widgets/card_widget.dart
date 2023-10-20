@@ -1,29 +1,31 @@
+import 'package:chuva_dart/data/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class CardWidget extends StatelessWidget {
-  String type = 'Apresentação de Pôster';
-  DateTime start = DateTime.now();
-  DateTime end = DateTime.now();
+class CardWidget extends StatefulWidget {
+  const CardWidget({required this.event, super.key});
 
-  String title = "Astrofísica Relativista: Explorando as Previsões de Einstein";
-  List<String> peoples = ["Neil deGrasse Tyson", "Stephen William Hawking"];
+  final Event event;
 
-  CardWidget({super.key});
+  @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
 
-  String formatarHora(DateTime dadeFormater) {
-    String date = DateFormat("hh:mm").format(dadeFormater);
+class _CardWidgetState extends State<CardWidget> {
+  late Event eventCard = widget.event;
+  String formatarHora(DateTime? dadeFormater) {
+    String date = DateFormat("hh:mm").format(dadeFormater!);
     return date;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.only(left: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+      padding: const EdgeInsets.only(left: 5),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Colors.purple,
+        color: Color(0xFFC24FFE),
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -37,7 +39,7 @@ class CardWidget extends StatelessWidget {
             ),
           ],
         ),
-        padding:EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,30 +47,37 @@ class CardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$type de ${formatarHora(start)} até ${formatarHora(end)}',
+                  '${eventCard.type.title?.ptBr} de ${formatarHora(eventCard.start)} até ${formatarHora(eventCard.end)}',
                   style: const TextStyle(
                     fontSize: 12,
                   ),
                 ),
                  Icon(
-                   color: Colors.blueGrey,
-                  Icons.bookmark_outlined,
+                  color: Colors.indigoAccent,
+                   eventCard.isFavorite ?
+                  Icons.bookmark_outlined: null,
                 )
               ],
             ),
             Text(
-              title,
+              eventCard.title.ptBr,
               style: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 15.5,
-                  fontFamily: 'Cupertino'),
-            ),
-            Text(
-              '${peoples[0]}, ${peoples[1]}',
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.black45,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 17,
               ),
+            ),
+            Row(
+              children: [
+                ...eventCard.people.map(
+                  (e) => Text(
+                    '${e.name}, ',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

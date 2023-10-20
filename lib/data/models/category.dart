@@ -1,18 +1,15 @@
-import 'package:chuva_dart/shared/base.dart';
-import 'package:chuva_dart/shared/label.dart';
+import 'package:chuva_dart/data/models/shared/base.dart';
+import 'package:chuva_dart/data/models/shared/label.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
-class Category{
+class Category extends Base{
 
   String? color;
   @JsonValue('background-color')
   String? backgroundColor;
 
-  int? id;
-  Label? title;
-
-  Category({this.color, this.backgroundColor, this.id, this.title});
+  Category({this.color, this.backgroundColor, id, title}):super(id: id,title: title);
 
   factory Category.fromJson(Map json){
     return Category(
