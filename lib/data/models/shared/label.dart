@@ -3,13 +3,13 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable()
 class Label{
   @JsonKey(name:"pt-br")
-  String? ptBr;
+  String ptBr;
 
-  Label({this.ptBr});
+  Label({required this.ptBr});
 
   factory Label.fromJson(Map json){
     return Label(
-      ptBr: json['pt-br'],
+      ptBr: json['pt-br'] ?? "",
     );
   }
 

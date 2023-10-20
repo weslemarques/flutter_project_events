@@ -1,17 +1,16 @@
-import 'package:chuva_dart/shared/base.dart';
-import 'package:chuva_dart/shared/label.dart';
+
+import 'package:chuva_dart/data/models/shared/base.dart';
+import 'package:chuva_dart/data/models/shared/label.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
-class Location{
+class Location extends Base{
 
   int? parent;
   String? map;
 
-  int? id;
-  Label? title;
 
-  Location({this.parent, this.map, this.id, this.title});
+  Location({this.parent, this.map, id, title}):super(id:id,title:title);
 
   factory Location.fromJson(Map json){
     return Location(
@@ -20,12 +19,6 @@ class Location{
       id: json['id'],
       title: json['title'] != null ? Label.fromJson(json['title']) : null,
     );
-  }
-
-  static listOfLocation(List<dynamic> json) {
-    List<Location> locations = <Location>[];
-    json.forEach((l) => locations!.add(Location.fromJson(l)));
-    return locations;
   }
 
   @override
